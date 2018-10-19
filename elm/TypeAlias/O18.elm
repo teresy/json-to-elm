@@ -67,8 +67,7 @@ createDecoder string =
 
         fields =
             parsedFields
-                |> List.map getFieldNameAndType
-                |> List.map formatDecoderField
+                |> List.map (getFieldNameAndType >> formatDecoderField)
                 |> String.join "\n        "
 
         numberOfFields =
@@ -112,8 +111,7 @@ createPipelineDecoder string =
 
         fields =
             getFields withoutNewlines
-                |> List.map getFieldNameAndType
-                |> List.map formatPipelineDecoderField
+                |> List.map (getFieldNameAndType >> formatPipelineDecoderField)
                 |> String.join "\n        "
     in
         String.join ""
@@ -143,8 +141,7 @@ createEncoder string =
 
         fields =
             getFields withoutNewlines
-                |> List.map getFieldNameAndType
-                |> List.map formatEncoderField
+                |> List.map (getFieldNameAndType >> formatEncoderField)
                 |> String.join "\n        , "
     in
         String.join ""
